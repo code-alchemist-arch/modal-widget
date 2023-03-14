@@ -1,5 +1,4 @@
 import FloatModal from './widgets/FloatModal';
-import './App.css';
 
 function App() {
   return (
