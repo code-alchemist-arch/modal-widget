@@ -6,9 +6,7 @@ import './index.scss';
 const ModalContainer = ({ onCloseModal }) => {
   return (
     <div id="f_modal_container" className="f-modal">
-      <div className="f-modal-icon">
-        <img src="favicon.ico" alt="logo" />
-      </div>
+      <div className="f-modal-icon"></div>
       <div className="f-modal-content">
         <p className="f-modal-promote-text">Download for a discount</p>
         {
@@ -32,12 +30,12 @@ const ModalContainer = ({ onCloseModal }) => {
 
 export default function FloatModal() {
   const isNotAllow = useMemo(() => {
-    const isMobile = window.innerWidth < 576;
-
+    const isMobile = navigator.userAgentData.mobile;
     const userAgent = window.navigator.userAgent;
     const iOS = !!userAgent.match(/iPad/i) || !!userAgent.match(/iPhone/i);
     const webkit = !!userAgent.match(/WebKit/i);
     const iOSSafari = iOS && webkit && !userAgent.match(/CriOS/i);
+
     return !isMobile || iOSSafari;
   }, []);
 
