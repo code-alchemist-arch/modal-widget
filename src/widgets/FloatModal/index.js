@@ -30,14 +30,15 @@ const ModalContainer = ({ onCloseModal }) => {
   );
 };
 
-export default function FloatModal(props) {
+export default function FloatModal() {
   const isNotAllow = useMemo(() => {
     const isMobile = window.innerWidth < 576;
 
     const userAgent = window.navigator.userAgent;
-    const isIOSSafari = userAgent.match(/iPad/i) || userAgent.match(/iPhone/i);
-
-    return !isMobile || isIOSSafari;
+    const iOS = !!userAgent.match(/iPad/i) || !!userAgent.match(/iPhone/i);
+    const webkit = !!userAgent.match(/WebKit/i);
+    const iOSSafari = iOS && webkit && !userAgent.match(/CriOS/i);
+    return !isMobile || iOSSafari;
   }, []);
 
   const onCloseModal = useCallback(() => {
@@ -45,7 +46,7 @@ export default function FloatModal(props) {
   }, []);
 
   useEffect(() => {
-    if (!isNotAllow) return;
+    if (isNotAllow) return;
 
     const timeId = setTimeout(() => {
       document.getElementById('f_modal_container').style.bottom = '20px';
