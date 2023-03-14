@@ -1,0 +1,43 @@
+.f-modal {
+  z-index: 9999;
+  position: fixed;
+  left: 7vw;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  width: 80vw;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: all .3s ease;
+  bottom: -300px;
+  &-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+  }
+  &-content {
+    margin-left: 20px;
+  }
+  &-btn-close {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -10px;
+    right: -10px;
+    background-color: dimgrey;
+    font-size: 20px;
+    border-radius: 50%;
+    border: none;
+    &:focus {
+      opacity: 0.6;
+    }
+  }
+}
