@@ -9,9 +9,9 @@ import { Modal_Closed_Time_Key, Widget_Category } from '../../utils/common';
 
 import './index.scss';
 
-const ModalContainer = ({ onCloseModal, mobileOS }) => {
+const BannerContainer = ({ onCloseBanner, mobileOS }) => {
   return (
-    <div id="f_modal_container" className="f-modal">
+    <div id="t_banner_container" className="f-modal">
       <div className="f-modal-background">
         <div className="f-modal-icon">
           {mobileOS === 'Android' ? (
@@ -34,7 +34,7 @@ const ModalContainer = ({ onCloseModal, mobileOS }) => {
             </a>
           }
         </div>
-        <button className="f-modal-btn-close" onClick={onCloseModal}>
+        <button className="f-modal-btn-close" onClick={onCloseBanner}>
           <BiX size={24} color="#808080" />
         </button>
       </div>
@@ -42,15 +42,15 @@ const ModalContainer = ({ onCloseModal, mobileOS }) => {
   );
 };
 
-export default function FloatModal() {
+export default function TopBanner() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
   const { isCloseTimeLimit } = useCloseTimeLimit({
-    isModal: Widget_Category.fModal,
+    isModal: Widget_Category.tBanner,
   });
   const { mobileOS } = useMobileOS();
 
-  const onCloseModal = useCallback(() => {
-    document.getElementById('f_modal_container').style.bottom = '-300px';
+  const onCloseBanner = useCallback(() => {
+    document.getElementById('t_banner_container').style.top = '-300px';
     localStorage.setItem(Modal_Closed_Time_Key, new Date());
   }, []);
 
@@ -58,7 +58,7 @@ export default function FloatModal() {
     if (isNotWidgetVisible || isCloseTimeLimit) return;
 
     const timeId = setTimeout(() => {
-      document.getElementById('f_modal_container').style.bottom = '20px';
+      document.getElementById('t_banner_container').style.top = '0px';
     }, 1000);
 
     return () => {
@@ -67,7 +67,7 @@ export default function FloatModal() {
   }, [isNotWidgetVisible, isCloseTimeLimit]);
 
   return ReactDOM.createPortal(
-    <ModalContainer onCloseModal={onCloseModal} mobileOS={mobileOS} />,
-    document.querySelector('#float_modal')
+    <BannerContainer onCloseBanner={onCloseBanner} mobileOS={mobileOS} />,
+    document.querySelector('#top_banner')
   );
 }
