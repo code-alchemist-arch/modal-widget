@@ -1,23 +1,16 @@
-.t-banner {
+#t_banner_container {
   transition: all .3s ease;
-  top: -200px;
+  top: -300px;
+  bottom: unset;
   width: 100%;
-  position: fixed;
-  font-family: Beatrice,sans-serif;
-  &-inner {
-    padding-bottom: 0.625rem;
-    padding-top: 0.625rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    background-color: rgb(31 100 115);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 1.625rem;
+  left: 0;
+  border-radius: 0;
+  .f-modal-background {
+    width: 85vw;
   }
-  &-title {
-    color: white;
-    font-size: .813rem;
-    text-align: center;
+  .f-modal-btn-close {
+    background-color: white;
+    top: 0;
+    right: 0;
   }
 }
