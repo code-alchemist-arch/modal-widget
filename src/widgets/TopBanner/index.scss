@@ -1,8 +1,23 @@
-#t_banner_container {
-  z-index: 9999;
-  width: 100vw;
-  left: 0;
-  bottom: unset;
-  border-radius: 0;
-  top: -300px;
+.t-banner {
+  transition: all .3s ease;
+  top: -200px;
+  width: 100%;
+  position: fixed;
+  font-family: Beatrice,sans-serif;
+  &-inner {
+    padding-bottom: 0.625rem;
+    padding-top: 0.625rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background-color: rgb(31 100 115);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.625rem;
+  }
+  &-title {
+    color: white;
+    font-size: .813rem;
+    text-align: center;
+  }
 }

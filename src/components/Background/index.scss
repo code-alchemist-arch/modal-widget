@@ -1,3 +1,49 @@
+
+h1 {
+  font-family: 'Shrikhand', cursive;
+  text-align: center;
+  font-size: 50px;
+  text-transform: uppercase;
+  margin: 60px 0 0 0;
+}
+
+h2 {
+  text-align: center;
+  font-family:'Roboto', sans-serif;
+  color: #eacb86;
+  margin: 0px 0 24px 0;
+}
+
+small {
+  opacity: 0; 
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 500px) {  
+  h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 10px;
+  }
+  
+  .sweat-category {
+    font-size: 20px;
+    line-height: 24px;
+  }
+  
+  small {
+    font-size: 12px;
+  }
+  .social-media {
+    display: block;
+    margin: 30px auto;
+  }
+}
+
 .sweat-category {
   color: rgba(255,255,255,1);
   font-family: 'Shrikhand', cursive;
