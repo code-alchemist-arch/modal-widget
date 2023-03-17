@@ -62,11 +62,11 @@
   }
   &-btn-close {
     position: absolute;
-    top: -18px;
-    right: -18px;
     border: none;
-    padding: 0.75rem;
-    background-color: rgb(209 213 219);
+    padding: 0.5rem;
     border-radius: 50%;
+    background-color: white;
+    top: 0;
+    right: 0;
   }
 }
