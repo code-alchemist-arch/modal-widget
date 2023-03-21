@@ -27,8 +27,11 @@ export default function TopBanner() {
     if (isNotWidgetVisible || isCloseTimeLimit) return;
 
     const timeId = setTimeout(() => {
-      document.getElementById('t_banner_container').style.top = '0px';
-      document.getElementById('root').style.marginTop = '100px';
+      const tBanner = document.getElementById('t_banner_container');
+      const root = document.getElementById('root');
+      if (!tBanner || !root) return;
+      tBanner.style.top = '0px';
+      root.style.marginTop = '100px';
     }, 1000);
 
     return () => {
@@ -36,12 +39,14 @@ export default function TopBanner() {
     };
   }, [isNotWidgetVisible, isCloseTimeLimit]);
 
+  if (!document.getElementById('top_banner')) return null;
+
   return ReactDOM.createPortal(
     <Widget
       onCloseWidget={onClosePanel}
       mobileOS={mobileOS}
       id="t_banner_container"
     />,
-    document.querySelector('#top_banner')
+    document.getElementById('top_banner')
   );
 }

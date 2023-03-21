@@ -24,7 +24,9 @@ export default function FloatModal() {
     if (isNotWidgetVisible || isCloseTimeLimit) return;
 
     const timeId = setTimeout(() => {
-      document.getElementById('f_modal_container').style.bottom = '20px';
+      const fModal = document.getElementById('f_modal_container');
+      if (!fModal) return;
+      fModal.style.bottom = '20px';
     }, 1000);
 
     return () => {
@@ -32,12 +34,14 @@ export default function FloatModal() {
     };
   }, [isNotWidgetVisible, isCloseTimeLimit]);
 
+  if (!document.getElementById('float_modal')) return null;
+
   return ReactDOM.createPortal(
     <Widget
       onCloseWidget={onCloseModal}
       mobileOS={mobileOS}
       id="f_modal_container"
     />,
-    document.querySelector('#float_modal')
+    document.getElementById('float_modal')
   );
 }

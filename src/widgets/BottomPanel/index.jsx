@@ -26,7 +26,9 @@ export default function BottomPanel() {
     if (isNotWidgetVisible || isCloseTimeLimit) return;
 
     const timeId = setTimeout(() => {
-      document.getElementById('b_panel_container').style.bottom = '0px';
+      const bPanel = document.getElementById('b_panel_container');
+      if (!bPanel) return;
+      bPanel.style.bottom = '0px';
     }, 1000);
 
     return () => {
@@ -34,12 +36,14 @@ export default function BottomPanel() {
     };
   }, [isNotWidgetVisible, isCloseTimeLimit]);
 
+  if (!document.getElementById('bottom_panel')) return null;
+
   return ReactDOM.createPortal(
     <Widget
       onCloseWidget={onClosePanel}
       mobileOS={mobileOS}
       id="b_panel_container"
     />,
-    document.querySelector('#bottom_panel')
+    document.getElementById('bottom_panel')
   );
 }
