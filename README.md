@@ -17,9 +17,9 @@ _\<body>_
 
     TEST
 
-_\<script src="external.js" />_
+_\<script src="external.js">\</script>_
 
-_\<script src="index.js" />_
+_\<script src="index.js">\</script>_
 
 _\</body>_
 
