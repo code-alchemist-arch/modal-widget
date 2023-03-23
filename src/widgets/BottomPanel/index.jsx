@@ -8,8 +8,6 @@ import useCloseTimeLimit from '../../hooks/useCloseTimeLimit';
 import useMobileOS from '../../hooks/useMobileOS';
 import { Panel_Closed_Time_Key, Widget_Category } from '../../utils/common';
 
-import './index.scss';
-
 export default function BottomPanel() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
   const { isCloseTimeLimit } = useCloseTimeLimit({
