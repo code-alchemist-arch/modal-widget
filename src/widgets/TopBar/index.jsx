@@ -8,7 +8,7 @@ import useCloseTimeLimit from '../../hooks/useCloseTimeLimit';
 import useMobileOS from '../../hooks/useMobileOS';
 import { Banner_Closed_Time_Key, Widget_Category } from '../../utils/common';
 
-export default function TopBanner() {
+export default function TopBar() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
   const { isCloseTimeLimit } = useCloseTimeLimit({
     widgetCategory: Widget_Category.tBanner,
@@ -16,7 +16,7 @@ export default function TopBanner() {
   const { mobileOS } = useMobileOS();
 
   const onClosePanel = useCallback(() => {
-    document.getElementById('t_banner_container').style.top = '-300px';
+    document.getElementById('t_bar_container').style.top = '-300px';
     document.getElementById('root').style.marginTop = '0px';
     localStorage.setItem(Banner_Closed_Time_Key, new Date());
   }, []);
@@ -25,7 +25,7 @@ export default function TopBanner() {
     if (isNotWidgetVisible || isCloseTimeLimit) return;
 
     const timeId = setTimeout(() => {
-      const tBanner = document.getElementById('t_banner_container');
+      const tBanner = document.getElementById('t_bar_container');
       const root = document.getElementById('root');
       if (!tBanner || !root) return;
       tBanner.style.top = '0px';
@@ -37,14 +37,14 @@ export default function TopBanner() {
     };
   }, [isNotWidgetVisible, isCloseTimeLimit]);
 
-  if (!document.getElementById('top_banner')) return null;
+  if (!document.getElementById('top_bar')) return null;
 
   return ReactDOM.createPortal(
     <Widget
       onCloseWidget={onClosePanel}
       mobileOS={mobileOS}
-      id="t_banner_container"
+      id="t_bar_container"
     />,
-    document.getElementById('top_banner')
+    document.getElementById('top_bar')
   );
 }

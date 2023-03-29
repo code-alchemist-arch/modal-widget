@@ -12,7 +12,7 @@ bottomPanel.id = 'bottom_panel';
 
 // top banner
 const topBanner = document.createElement('div');
-topBanner.id = 'top_banner';
+topBanner.id = 'top_bar';
 
 document.body.appendChild(root);
 document.body.appendChild(floatModal);

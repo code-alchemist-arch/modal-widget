@@ -8,7 +8,7 @@ export default function useAllowWidgetVisible() {
     const webkit = !!userAgent.match(/WebKit/i);
     const iOSSafari = iOS && webkit && !userAgent.match(/CriOS/i);
     const isContainCanvas = !!userAgent.includes('Canvas');
-
+    console.log('userAgent', userAgent);
     return !isMobile || iOSSafari || isContainCanvas;
   }, []);
 

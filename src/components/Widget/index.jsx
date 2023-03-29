@@ -18,9 +18,8 @@ const WidgetContainer = styled(FModal)`
   left: ${(props) => (props.id !== 'f_modal_container' ? '0' : '5vw')};
   border-radius: ${(props) =>
     props.id !== 'f_modal_container' ? '0' : '0.75rem'};
-  top: ${(props) => (props.id === 't_banner_container' ? '-300px' : 'unset')};
-  bottom: ${(props) =>
-    props.id === 't_banner_container' ? 'unset' : '-300px'};
+  top: ${(props) => (props.id === 't_bar_container' ? '-300px' : 'unset')};
+  bottom: ${(props) => (props.id === 't_bar_container' ? 'unset' : '-300px')};
 `;
 
 const FModalBackground = styled.div`
