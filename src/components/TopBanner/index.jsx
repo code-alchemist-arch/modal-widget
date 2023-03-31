@@ -1,6 +1,8 @@
-import { useMemo, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import useAllowWidgetVisible from '../../hooks/useAllowWidgetVisible';
+import usePromotion from '../../hooks/usePromotion';
 
 const BannerContainer = styled.div`
   background-color: #14a7ed;
@@ -20,26 +22,26 @@ const Code = styled.p`
 `;
 
 export default function TopBanner() {
-  const isVisible = useMemo(() => {
-    const userAgent = window.navigator.userAgent;
-    return !!userAgent.toLowerCase().includes('canvas');
-  }, []);
+  const { isNotWidgetVisible } = useAllowWidgetVisible();
+  const { isPromotion } = usePromotion();
+  const [isExistTopBanner, setIsExistTopBanner] = useState(false);
 
   useEffect(() => {
-    if (!isVisible.current) return;
+    const existingTopBanner = document.getElementById('top_banner');
+    if (existingTopBanner) document.body.removeChild(existingTopBanner);
 
-    const timeId = setTimeout(() => {
-      const fModal = document.getElementById('t_banner_container');
-      if (!fModal) return;
-      fModal.style.bottom = '20px';
-    }, 1000);
+    if (isNotWidgetVisible || !isPromotion) {
+      setIsExistTopBanner(false);
+      return;
+    }
 
-    return () => {
-      clearTimeout(timeId);
-    };
-  }, [isVisible]);
+    const topBanner = document.createElement('div');
+    topBanner.id = 'top_banner';
+    document.body.insertBefore(topBanner, document.body.firstChild);
+    setIsExistTopBanner(true);
+  }, [isNotWidgetVisible, isPromotion]);
 
-  if (!document.getElementById('top_banner')) return null;
+  if (!isExistTopBanner) return null;
 
   return ReactDOM.createPortal(
     <BannerContainer id="t_banner_container">

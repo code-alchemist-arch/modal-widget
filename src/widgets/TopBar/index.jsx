@@ -6,10 +6,12 @@ import Widget from '../../components/Widget';
 import useAllowWidgetVisible from '../../hooks/useAllowWidgetVisible';
 import useCloseTimeLimit from '../../hooks/useCloseTimeLimit';
 import useMobileOS from '../../hooks/useMobileOS';
+import usePromotion from '../../hooks/usePromotion';
 import { Banner_Closed_Time_Key, Widget_Category } from '../../utils/common';
 
 export default function TopBar() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
+  const { isPromotion } = usePromotion();
   const { isCloseTimeLimit } = useCloseTimeLimit({
     widgetCategory: Widget_Category.tBanner,
   });
@@ -22,7 +24,7 @@ export default function TopBar() {
   }, []);
 
   useEffect(() => {
-    if (isNotWidgetVisible || isCloseTimeLimit) return;
+    if (isNotWidgetVisible || isCloseTimeLimit || isPromotion) return;
 
     const timeId = setTimeout(() => {
       const tBanner = document.getElementById('t_bar_container');
@@ -35,7 +37,7 @@ export default function TopBar() {
     return () => {
       clearTimeout(timeId);
     };
-  }, [isNotWidgetVisible, isCloseTimeLimit]);
+  }, [isNotWidgetVisible, isCloseTimeLimit, isPromotion]);
 
   if (!document.getElementById('top_bar')) return null;
 

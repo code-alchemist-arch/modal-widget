@@ -6,10 +6,12 @@ import Widget from '../../components/Widget';
 import useAllowWidgetVisible from '../../hooks/useAllowWidgetVisible';
 import useMobileOS from '../../hooks/useMobileOS';
 import useCloseTimeLimit from '../../hooks/useCloseTimeLimit';
+import usePromotion from '../../hooks/usePromotion';
 import { Modal_Closed_Time_Key, Widget_Category } from '../../utils/common';
 
 export default function FloatModal() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
+  const { isPromotion } = usePromotion();
   const { isCloseTimeLimit } = useCloseTimeLimit({
     widgetCategory: Widget_Category.fModal,
   });
@@ -21,7 +23,7 @@ export default function FloatModal() {
   }, []);
 
   useEffect(() => {
-    if (isNotWidgetVisible || isCloseTimeLimit) return;
+    if (isNotWidgetVisible || isCloseTimeLimit || isPromotion) return;
 
     const timeId = setTimeout(() => {
       const fModal = document.getElementById('f_modal_container');
@@ -32,7 +34,7 @@ export default function FloatModal() {
     return () => {
       clearTimeout(timeId);
     };
-  }, [isNotWidgetVisible, isCloseTimeLimit]);
+  }, [isNotWidgetVisible, isCloseTimeLimit, isPromotion]);
 
   if (!document.getElementById('float_modal')) return null;
 

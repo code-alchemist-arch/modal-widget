@@ -6,10 +6,12 @@ import Widget from '../../components/Widget';
 import useAllowWidgetVisible from '../../hooks/useAllowWidgetVisible';
 import useCloseTimeLimit from '../../hooks/useCloseTimeLimit';
 import useMobileOS from '../../hooks/useMobileOS';
+import usePromotion from '../../hooks/usePromotion';
 import { Panel_Closed_Time_Key, Widget_Category } from '../../utils/common';
 
 export default function BottomPanel() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
+  const { isPromotion } = usePromotion();
   const { isCloseTimeLimit } = useCloseTimeLimit({
     widgetCategory: Widget_Category.bPanel,
   });
@@ -21,7 +23,7 @@ export default function BottomPanel() {
   }, []);
 
   useEffect(() => {
-    if (isNotWidgetVisible || isCloseTimeLimit) return;
+    if (isNotWidgetVisible || isCloseTimeLimit || isPromotion) return;
 
     const timeId = setTimeout(() => {
       const bPanel = document.getElementById('b_panel_container');
@@ -32,7 +34,7 @@ export default function BottomPanel() {
     return () => {
       clearTimeout(timeId);
     };
-  }, [isNotWidgetVisible, isCloseTimeLimit]);
+  }, [isNotWidgetVisible, isCloseTimeLimit, isPromotion]);
 
   if (!document.getElementById('bottom_panel')) return null;
 
