@@ -22,7 +22,7 @@ const Code = styled.p`
 export default function TopBanner() {
   const isVisible = useMemo(() => {
     const userAgent = window.navigator.userAgent;
-    return !!userAgent.includes('Canvas');
+    return !!userAgent.toLowerCase().includes('canvas');
   }, []);
 
   useEffect(() => {
