@@ -123,7 +123,7 @@ export default function Widget({ onCloseWidget, mobileOS, id }) {
         </ContentWrapper>
         <FModalDownload
           className="f-modal-download"
-          href="/"
+          href={mobileOS === 'Android' ? '/android' : '/ios'}
           target="_blank"
           download="download.zip"
         >
