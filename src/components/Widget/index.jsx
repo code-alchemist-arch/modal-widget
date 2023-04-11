@@ -1,6 +1,7 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 
-import options from '../../utils/options';
+import AppContext from '../../context/app';
 
 const FModal = styled.div`
   position: fixed;
@@ -96,6 +97,8 @@ const FModalClose = styled.button`
 `;
 
 export default function Widget({ onCloseWidget, mobileOS, id }) {
+  const options = useContext(AppContext);
+
   return (
     <WidgetContainer id={id}>
       <WidgetBackground widgetId={id}>

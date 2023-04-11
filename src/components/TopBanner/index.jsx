@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+
 import useAllowWidgetVisible from '../../hooks/useAllowWidgetVisible';
 import usePromotion from '../../hooks/usePromotion';
 
-import options from '../../utils/options';
+import AppContext from '../../context/app';
 
 const BannerContainer = styled.div`
   background-color: #14a7ed;
@@ -27,6 +28,7 @@ export default function TopBanner() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
   const { isPromotion } = usePromotion();
   const [isExistTopBanner, setIsExistTopBanner] = useState(false);
+  const options = useContext(AppContext);
 
   useEffect(() => {
     const existingTopBanner = document.getElementById('top_banner');
