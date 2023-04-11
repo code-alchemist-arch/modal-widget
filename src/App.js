@@ -3,13 +3,15 @@ import FloatModal from './widgets/FloatModal';
 import TopBar from './widgets/TopBar';
 import TopBanner from './components/TopBanner';
 
+import options from './utils/options';
+
 function App() {
   return (
     <>
-      <FloatModal />
-      <BottomPanel />
-      <TopBar />
-      <TopBanner />
+      {options.position === 'float' && <FloatModal />}
+      {options.position === 'bottom' && <BottomPanel />}
+      {options.position === 'top' && <TopBar />}
+      {options.position === 'top-banner' && <TopBanner />}
     </>
   );
 }

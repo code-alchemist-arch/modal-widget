@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import useAllowWidgetVisible from '../../hooks/useAllowWidgetVisible';
 import usePromotion from '../../hooks/usePromotion';
 
+import options from '../../utils/options';
+
 const BannerContainer = styled.div`
   background-color: #14a7ed;
   height: 36px;
@@ -44,9 +46,17 @@ export default function TopBanner() {
   if (!isExistTopBanner) return null;
 
   return ReactDOM.createPortal(
-    <BannerContainer id="t_banner_container">
-      <DiscountCode>Get 10% Off your first in app purchase</DiscountCode>
-      <Code>Use Code: APP10</Code>
+    <BannerContainer
+      id="t_banner_container"
+      style={{
+        backgroundColor: options.couponBackgroundColor,
+        color: options.couponTextColor,
+      }}
+    >
+      <DiscountCode>{options.couponTextHeading}</DiscountCode>
+      <Code
+        dangerouslySetInnerHTML={{ __html: options.couponTextDescription }}
+      />
     </BannerContainer>,
     document.getElementById('top_banner')
   );
