@@ -18,7 +18,7 @@ export default function BottomPanel() {
   const { mobileOS } = useMobileOS();
 
   const onClosePanel = useCallback(() => {
-    document.getElementById('b_panel_container').style.bottom = '-300px';
+    document.getElementById('bottom_panel_wrapper').style.bottom = '-300px';
     localStorage.setItem(Panel_Closed_Time_Key, new Date());
   }, []);
 
@@ -26,7 +26,7 @@ export default function BottomPanel() {
     if (isNotWidgetVisible || isCloseTimeLimit || isPromotion) return;
 
     const timeId = setTimeout(() => {
-      const bPanel = document.getElementById('b_panel_container');
+      const bPanel = document.getElementById('bottom_panel_wrapper');
       if (!bPanel) return;
       bPanel.style.bottom = '0px';
     }, 1000);
@@ -42,7 +42,7 @@ export default function BottomPanel() {
     <Widget
       onCloseWidget={onClosePanel}
       mobileOS={mobileOS}
-      id="b_panel_container"
+      id="bottom_panel_wrapper"
     />,
     document.getElementById('bottom_panel')
   );

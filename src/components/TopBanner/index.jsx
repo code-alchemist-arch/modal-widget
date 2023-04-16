@@ -8,8 +8,8 @@ import usePromotion from '../../hooks/usePromotion';
 import AppContext from '../../context/app';
 
 const BannerContainer = styled.div`
+  font-family: 'Open Sans', Arial, sans-serif;
   background-color: #14a7ed;
-  height: 36px;
   text-align: center;
   padding: 10px;
 `;
@@ -49,14 +49,17 @@ export default function TopBanner() {
 
   return ReactDOM.createPortal(
     <BannerContainer
-      id="t_banner_container"
+      id="top_banner_wrapper"
       style={{
         backgroundColor: options.couponBackgroundColor,
         color: options.couponTextColor,
       }}
     >
-      <DiscountCode>{options.couponTextHeading}</DiscountCode>
+      <DiscountCode className="coupon-heading">
+        {options.couponTextHeading}
+      </DiscountCode>
       <Code
+        className="coupon-description"
         dangerouslySetInnerHTML={{ __html: options.couponTextDescription }}
       />
     </BannerContainer>,

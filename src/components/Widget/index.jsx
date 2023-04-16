@@ -9,16 +9,17 @@ const FModal = styled.div`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   transition: all 0.3s ease;
+  font-family: 'Open Sans', Arial, sans-serif;
 `;
 
 const WidgetContainer = styled(FModal)`
-  z-index: ${(props) => (props.id === 'b_panel_container' ? 9998 : 9999)};
-  width: ${(props) => (props.id !== 'f_modal_container' ? '100vw' : '90vw')};
-  left: ${(props) => (props.id !== 'f_modal_container' ? '0' : '5vw')};
+  z-index: ${(props) => (props.id === 'bottom_panel_wrapper' ? 9998 : 9999)};
+  width: ${(props) => (props.id !== 'float_modal_wrapper' ? '100vw' : '90vw')};
+  left: ${(props) => (props.id !== 'float_modal_wrapper' ? '0' : '5vw')};
   border-radius: ${(props) =>
-    props.id !== 'f_modal_container' ? '0' : '0.75rem'};
-  top: ${(props) => (props.id === 't_bar_container' ? '-300px' : 'unset')};
-  bottom: ${(props) => (props.id === 't_bar_container' ? 'unset' : '-300px')};
+    props.id !== 'float_modal_wrapper' ? '0' : '0.75rem'};
+  top: ${(props) => (props.id === 'top_bar_wrapper' ? '-300px' : 'unset')};
+  bottom: ${(props) => (props.id === 'top_bar_wrapper' ? 'unset' : '-300px')};
 `;
 
 const FModalBackground = styled.div`
@@ -30,7 +31,9 @@ const FModalBackground = styled.div`
 
 const WidgetBackground = styled(FModalBackground)`
   width: ${(props) =>
-    props.widgetId === 'b_panel_container' ? '85vw' : '80vw'};
+    props.widgetId === 'float_modal_wrapper'
+      ? 'calc(90vw - 40px)'
+      : 'calc(100vw - 40px)'};
 `;
 
 const ContentWrapper = styled.div`
@@ -52,14 +55,12 @@ const FModalIcon = styled.div`
 `;
 
 const FModalAppTitle = styled.p`
-  font-family: Beatrice, sans-serif;
   margin: 0;
   font-size: 0.75rem;
   line-height: 1rem;
 `;
 
 const FModalPromoteText = styled.p`
-  font-family: Beatrice, sans-serif;
   margin: 0;
   line-height: 1.25;
   font-size: 0.625rem;
@@ -90,7 +91,6 @@ const FModalClose = styled.button`
   position: absolute;
   border: none;
   padding: 0.5rem;
-  border-radius: 50%;
   background-color: white;
   top: 0;
   right: 0;
@@ -100,10 +100,10 @@ export default function Widget({ onCloseWidget, mobileOS, id }) {
   const options = useContext(AppContext);
 
   return (
-    <WidgetContainer id={id}>
-      <WidgetBackground widgetId={id}>
-        <ContentWrapper>
-          <FModalIcon>
+    <WidgetContainer id={id} className="widget-wrapper">
+      <WidgetBackground className="widget-background" widgetId={id}>
+        <ContentWrapper className="widget-section">
+          <FModalIcon className="widget-icon">
             {mobileOS === 'Android' ? (
               <img src={options.iconAndroid} alt="Android Icon" />
             ) : (
@@ -112,13 +112,16 @@ export default function Widget({ onCloseWidget, mobileOS, id }) {
           </FModalIcon>
           <div>
             <FModalAppTitle
+              className="widget-heading"
               dangerouslySetInnerHTML={{ __html: options.textHeading }}
             />
-            <FModalPromoteText>{options.textDescription}</FModalPromoteText>
+            <FModalPromoteText className="widget-description">
+              {options.textDescription}
+            </FModalPromoteText>
           </div>
         </ContentWrapper>
         <FModalDownload
-          className="f-modal-download"
+          className="widget-btn-download"
           href={
             mobileOS === 'Android'
               ? options.buttonLinkAndroid
@@ -132,7 +135,7 @@ export default function Widget({ onCloseWidget, mobileOS, id }) {
         >
           {options.buttonText}
         </FModalDownload>
-        <FModalClose onClick={onCloseWidget}>
+        <FModalClose className="widget-btn-close" onClick={onCloseWidget}>
           <svg
             width="13"
             height="13"

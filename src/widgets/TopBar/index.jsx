@@ -18,7 +18,7 @@ export default function TopBar() {
   const { mobileOS } = useMobileOS();
 
   const onClosePanel = useCallback(() => {
-    document.getElementById('t_bar_container').style.top = '-300px';
+    document.getElementById('top_bar_wrapper').style.top = '-300px';
     document.getElementById('root').style.marginTop = '0px';
     localStorage.setItem(Banner_Closed_Time_Key, new Date());
   }, []);
@@ -27,7 +27,7 @@ export default function TopBar() {
     if (isNotWidgetVisible || isCloseTimeLimit || isPromotion) return;
 
     const timeId = setTimeout(() => {
-      const tBanner = document.getElementById('t_bar_container');
+      const tBanner = document.getElementById('top_bar_wrapper');
       const root = document.getElementById('root');
       if (!tBanner || !root) return;
       tBanner.style.top = '0px';
@@ -45,7 +45,7 @@ export default function TopBar() {
     <Widget
       onCloseWidget={onClosePanel}
       mobileOS={mobileOS}
-      id="t_bar_container"
+      id="top_bar_wrapper"
     />,
     document.getElementById('top_bar')
   );

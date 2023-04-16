@@ -18,7 +18,7 @@ export default function FloatModal() {
   const { mobileOS } = useMobileOS();
 
   const onCloseModal = useCallback(() => {
-    document.getElementById('f_modal_container').style.bottom = '-300px';
+    document.getElementById('float_modal_wrapper').style.bottom = '-300px';
     localStorage.setItem(Modal_Closed_Time_Key, new Date());
   }, []);
 
@@ -26,7 +26,7 @@ export default function FloatModal() {
     if (isNotWidgetVisible || isCloseTimeLimit || isPromotion) return;
 
     const timeId = setTimeout(() => {
-      const fModal = document.getElementById('f_modal_container');
+      const fModal = document.getElementById('float_modal_wrapper');
       if (!fModal) return;
       fModal.style.bottom = '20px';
     }, 1000);
@@ -42,7 +42,7 @@ export default function FloatModal() {
     <Widget
       onCloseWidget={onCloseModal}
       mobileOS={mobileOS}
-      id="f_modal_container"
+      id="float_modal_wrapper"
     />,
     document.getElementById('float_modal')
   );
