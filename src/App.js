@@ -12,7 +12,7 @@ function App() {
       {smartAppBanner.position === 'float' && <FloatModal />}
       {smartAppBanner.position === 'bottom' && <BottomPanel />}
       {smartAppBanner.position === 'top' && <TopBar />}
-      {smartAppBanner.position === 'top-banner' && <TopBanner />}
+      {smartAppBanner.couponEnable && <TopBanner />}
     </AppContext.Provider>
   );
 }
