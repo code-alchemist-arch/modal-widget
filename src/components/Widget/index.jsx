@@ -54,16 +54,16 @@ const FModalIcon = styled.div`
   }
 `;
 
-const FModalAppTitle = styled.p`
+const FModalAppContent = styled.p`
   margin: 0;
   font-size: 0.75rem;
   line-height: 1rem;
-`;
-
-const FModalPromoteText = styled.p`
-  margin: 0;
-  line-height: 1.25;
-  font-size: 0.625rem;
+  & > * {
+    margin: 0;
+  }
+  p:last-child {
+    margin-top: 3px !important;
+  }
 `;
 
 const FModalDownload = styled.a`
@@ -111,13 +111,10 @@ export default function Widget({ onCloseWidget, mobileOS, id }) {
             )}
           </FModalIcon>
           <div>
-            <FModalAppTitle
-              className="widget-heading"
-              dangerouslySetInnerHTML={{ __html: options.textHeading }}
+            <FModalAppContent
+              className="widget-content"
+              dangerouslySetInnerHTML={{ __html: options.textContent }}
             />
-            <FModalPromoteText className="widget-description">
-              {options.textDescription}
-            </FModalPromoteText>
           </div>
         </ContentWrapper>
         <FModalDownload
@@ -130,7 +127,8 @@ export default function Widget({ onCloseWidget, mobileOS, id }) {
           target="_blank"
           download="download.zip"
           style={{
-            backgroundColor: options.buttonColor,
+            color: options.buttonTextColor,
+            backgroundColor: options.buttonBackgroundColor,
           }}
         >
           {options.buttonText}

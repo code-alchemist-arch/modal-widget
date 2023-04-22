@@ -19,11 +19,6 @@ const DiscountCode = styled.p`
   margin: 0px;
 `;
 
-const Code = styled.p`
-  font-size: 12px;
-  margin: 5px 0 0 0;
-`;
-
 export default function TopBanner() {
   const { isNotWidgetVisible } = useAllowWidgetVisible();
   const { isPromotion } = usePromotion();
@@ -55,12 +50,9 @@ export default function TopBanner() {
         color: options.couponTextColor,
       }}
     >
-      <DiscountCode className="coupon-heading">
-        {options.couponTextHeading}
-      </DiscountCode>
-      <Code
-        className="coupon-description"
-        dangerouslySetInnerHTML={{ __html: options.couponTextDescription }}
+      <DiscountCode
+        className="coupon-content"
+        dangerouslySetInnerHTML={{ __html: options.couponContent }}
       />
     </BannerContainer>,
     document.getElementById('top_banner')
