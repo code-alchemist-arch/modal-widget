@@ -113,7 +113,7 @@ export default function Widget({ onCloseWidget, mobileOS, id }) {
           <div>
             <FModalAppContent
               className="widget-content"
-              dangerouslySetInnerHTML={{ __html: options.textContent }}
+              dangerouslySetInnerHTML={{ __html: options.bannerContent }}
             />
           </div>
         </ContentWrapper>
